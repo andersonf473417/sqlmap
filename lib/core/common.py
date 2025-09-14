@@ -5598,11 +5598,11 @@ def checkSums():
     retVal = True
 
     if paths.get("DIGEST_FILE"):
-        for entry in getFileItems(paths.DIGEST_FILE):
+        for entry in getFileItems(paths.get("DIGEST_FILE")):
             match = re.search(r"([0-9a-f]+)\s+([^\s]+)", entry)
             if match:
                 expected, filename = match.groups()
-                filepath = os.path.join(paths.SQLMAP_ROOT_PATH, filename).replace('/', os.path.sep)
+                filepath = os.path.join(paths.SQLMAP_ROOT_PATH, filename)
                 if not checkFile(filepath, False):
                     continue
                 with open(filepath, "rb") as f:
