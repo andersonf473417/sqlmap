@@ -5597,8 +5597,9 @@ def checkSums():
 
     retVal = True
 
-    if paths.get("DIGEST_FILE"):
-        for entry in getFileItems(paths.DIGEST_FILE):
+    digest_file = paths.get("DIGEST_FILE")
+    if digest_file:
+        for entry in getFileItems(digest_file):
             match = re.search(r"([0-9a-f]+)\s+([^\s]+)", entry)
             if match:
                 expected, filename = match.groups()
