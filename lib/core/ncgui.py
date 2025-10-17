@@ -748,8 +748,15 @@ class NcursesUI:
 
 def runNcGui(parser):
     """Main entry point for ncurses GUI"""
+    import sys
+    if sys.platform == "win32":
+        import subprocess
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "windows-curses"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
+
     try:
-        # Check if ncurses is available
         import curses
     except ImportError:
         raise SqlmapMissingDependence("missing 'curses' module (try installing 'windows-curses' on Windows)")
