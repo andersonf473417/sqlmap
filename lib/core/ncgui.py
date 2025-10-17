@@ -5,7 +5,6 @@ Copyright (c) 2006-2025 sqlmap developers (https://sqlmap.org)
 See the file 'LICENSE' for copying permission
 """
 
-import curses
 import os
 import subprocess
 import sys
@@ -749,7 +748,6 @@ class NcursesUI:
 def runNcGui(parser):
     """Main entry point for ncurses GUI"""
     try:
-        # Check if ncurses is available
         import curses
     except ImportError:
         raise SqlmapMissingDependence("missing 'curses' module (try installing 'windows-curses' on Windows)")
