@@ -5,11 +5,15 @@ Copyright (c) 2006-2025 sqlmap developers (https://sqlmap.org)
 See the file 'LICENSE' for copying permission
 """
 
-import curses
 import os
 import subprocess
 import sys
 import tempfile
+
+try:
+    import curses
+except ImportError:
+    curses = None
 
 from lib.core.common import getSafeExString
 from lib.core.common import saveConfig
