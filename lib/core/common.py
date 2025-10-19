@@ -5607,8 +5607,8 @@ def checkSums():
                     continue
                 with open(filepath, "rb") as f:
                     content = f.read()
-                if not hashlib.sha256(content).hexdigest() == expected:
-                    retVal &= False
+                if hashlib.sha256(content).hexdigest() != expected:
+                    retVal = False
                     break
 
     return retVal
