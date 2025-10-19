@@ -5598,17 +5598,17 @@ def checkSums():
     retVal = True
 
     if paths.get("DIGEST_FILE"):
-        for entry in getFileItems(paths.DIGEST_FILE):
+        for entry in getFileItems(paths.get("DIGEST_FILE")):
             match = re.search(r"([0-9a-f]+)\s+([^\s]+)", entry)
             if match:
                 expected, filename = match.groups()
                 filepath = os.path.join(paths.SQLMAP_ROOT_PATH, filename).replace('/', os.path.sep)
                 if not checkFile(filepath, False):
+                    retVal &= False
                     continue
                 with open(filepath, "rb") as f:
                     content = f.read()
                 if not hashlib.sha256(content).hexdigest() == expected:
                     retVal &= False
-                    break
 
     return retVal
